@@ -1,104 +1,70 @@
-# OpenClaw Skills Showcase
+# OpenClaw skills I use (curated)
 
-> Advanced OpenClaw skills demonstrating deep platform expertise and multi-agent orchestration capabilities.
+A small, curated set of third-party [OpenClaw](https://clawhub.ai) skills that I install in my
+agent workspace. **I did not write any of the code or documentation in this repository.** Each
+skill is an unmodified copy installed from the ClawHub registry, kept here with its original
+author credit so I can reference the exact versions I run.
 
-## 🎯 About This Collection
+Each skill folder contains an `ATTRIBUTION.md` with the author, source, license and the result of
+a file-by-file comparison against the upstream release.
 
-These skills represent months of deep OpenClaw development, pushing the boundaries of what's possible with autonomous agent coordination. Each skill solves real-world problems while showcasing advanced OpenClaw patterns and architectures.
+## Skills
 
-## 🚀 Featured Skills
+| Skill | Version | Author | Source | License | Local changes |
+| --- | --- | --- | --- | --- | --- |
+| [agent-orchestrator](agent-orchestrator/) | 0.1.0 | aatmaan1 | [ClawHub](https://clawhub.ai/aatmaan1/skills/agent-orchestrator) | None stated | None |
+| [elite-longterm-memory](elite-longterm-memory/) | 1.2.2 | NextFrontierBuilds | [GitHub](https://github.com/NextFrontierBuilds/elite-longterm-memory) | MIT (declared) | None |
+| [agent-autonomy-kit](agent-autonomy-kit/) | 1.0.0 | Ryan Campbell / Team Reflectt | [GitHub](https://github.com/reflectt/agent-autonomy-kit) | MIT (declared) | None |
 
-### 🎭 Agent Orchestrator
-**Meta-agent skill for orchestrating complex tasks through autonomous sub-agents**
+### agent-orchestrator
 
-- Decomposes macro tasks into subtasks
-- Spawns specialized sub-agents with dynamically generated SKILL.md files  
-- Coordinates file-based communication between agents
-- Consolidates results and dissolves agents upon completion
-- **Enables truly autonomous multi-agent workflows**
+A prompt-only skill (Markdown, no code) that tells an agent how to break a large task into
+subtasks, write a short `SKILL.md` for each sub-agent, coordinate them through an
+inbox/outbox/status file protocol, then merge the results and clean up. The `references/` folder
+holds the communication protocol and sub-agent templates.
 
-**Use cases:** Complex project automation, parallel task execution, adaptive workflow management
+### elite-longterm-memory
 
-### 🧠 Elite Long-term Memory
-**Ultimate AI agent memory system with persistent context**
+A memory playbook for agents: a write-ahead "session state" file, a curated `MEMORY.md`, daily
+logs, optional LanceDB vector search and optional Mem0 or cloud backup. It ships a small Node CLI
+(`bin/elite-memory.js`) that creates the template files and reports their status. The vector
+search features expect the OpenClaw `memory-lancedb` plugin and an `OPENAI_API_KEY`.
 
-- WAL (Write-Ahead Logging) protocol for data integrity
-- Vector search with LanceDB for semantic retrieval
-- Git-notes integration for version control
-- Cloud backup for disaster recovery
-- **Never lose context again across sessions**
+### agent-autonomy-kit
 
-**Use cases:** Continuous learning, long-running projects, context preservation
+Guidance and templates for keeping an agent working between prompts: a task queue
+(`templates/QUEUE.md`), a heartbeat routine that pulls from the queue
+(`templates/HEARTBEAT.md`), and example `openclaw cron` jobs for scheduled work. This copy matches
+upstream commit `07560dd`; newer upstream versions add queue-checking scripts that are not
+included here.
 
-### ⚡ Agent Autonomy Kit  
-**Stop waiting for prompts. Keep working.**
+## Installing
 
-- Autonomous decision-making capabilities
-- Self-directed task continuation
-- Proactive problem-solving patterns
-- **Agents that truly work independently**
-
-**Use cases:** Unattended automation, autonomous monitoring, self-healing systems
-
-## 🏗️ Architecture Philosophy
-
-These skills follow core OpenClaw principles:
-
-- **Composable**: Each skill can be combined with others
-- **Stateful**: Proper memory and context management
-- **Autonomous**: Minimal human intervention required
-- **Scalable**: Designed for production workloads
-- **Maintainable**: Clean, documented, testable code
-
-## 🛠️ Technical Implementation
-
-Built with:
-- **OpenClaw native patterns**: Skills, sessions, heartbeats
-- **File-based coordination**: Reliable inter-agent communication
-- **Error handling**: Graceful failure and recovery
-- **Security-first**: Input validation and sandboxing
-- **Performance-optimized**: Efficient resource usage
-
-## 📚 Usage Examples
+Install from the original authors rather than from this repo, so you get their latest versions
+and license terms:
 
 ```bash
-# Orchestrate complex multi-step automation
-openclaw spawn --skill agent-orchestrator "Build and deploy 3 microservices"
+# ClawHub (each slug has more than one publisher, so specify the owner)
+# agent-orchestrator    -> @aatmaan1/agent-orchestrator
+# elite-longterm-memory -> @nextfrontierbuilds/elite-longterm-memory
+# agent-autonomy-kit    -> @ryancampbell/agent-autonomy-kit
 
-# Enable persistent memory across sessions  
-openclaw spawn --skill elite-longterm-memory "Remember this context: [complex project state]"
-
-# Run fully autonomous workflows
-openclaw spawn --skill agent-autonomy-kit "Monitor and optimize system performance"
+# Or from GitHub / npm
+git clone https://github.com/reflectt/agent-autonomy-kit.git skills/agent-autonomy-kit
+npx elite-longterm-memory init
 ```
 
-## 🎯 Production Ready
+## Original work
 
-These skills are battle-tested in production environments:
+None. This repository contains no original code or documentation by me apart from this README
+and the `ATTRIBUTION.md` files.
 
-- ✅ **VirtueStage**: AI virtual home staging platform
-- ✅ **RingTask**: Phone numbers as a service for AI agents  
-- ✅ **Voice agent systems**: Real-time automation workflows
-- ✅ **15+ specialized agents**: Daily operational use
+## Licenses
 
-## 🤝 Contributing
+Each skill remains under its author's terms; see the table above and each folder's
+`ATTRIBUTION.md`. `agent-orchestrator` has no stated license, so all rights stay with its author.
+Nothing in this repository is relicensed by me.
 
-Built for the OpenClaw community. Each skill includes:
+## Contact
 
-- Comprehensive documentation
-- Usage examples  
-- Error handling
-- Security considerations
-- Performance optimization
-
-## 📄 License
-
-MIT License - Built with ❤️ for the OpenClaw ecosystem
-
----
-
-**Author**: Mike Cavallo ([GitHub](https://github.com/mikecavallo))  
-**Experience**: 20+ years full-stack development, months of deep OpenClaw expertise  
-**Contact**: mikecavallo@gmail.com
-
-> *These skills represent the future of autonomous agent coordination. OpenClaw isn't just a CLI tool - it's the foundation for truly intelligent automation.*
+Mike Cavallo, [Business Runs Better](https://businessrunsbetter.com), hello@businessrunsbetter.com
